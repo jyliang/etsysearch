@@ -18,8 +18,13 @@
 }
 
 - (void)populateWithProductItemVM:(ProductItemViewModel *)itemVM {
-    self.productTitleLabel.text = [itemVM getProductTitle];
-    [self.productImageView setImageWithURL:[NSURL URLWithString:[itemVM getProductImageURL]]];
+    if (itemVM.populated) {
+        self.productTitleLabel.text = [itemVM getProductTitle];
+        [self.productImageView setImageWithURL:[NSURL URLWithString:[itemVM getProductImageURL]] placeholderImage:[UIImage imageNamed:@"icon"]];
+    } else {
+        [self.productImageView setImage:[UIImage imageNamed:@"icon"]];
+        self.productTitleLabel.text = @"loading...";
+    }
 }
 
 @end

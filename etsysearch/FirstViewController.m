@@ -10,7 +10,7 @@
 #import "SearchManager.h"
 #import "ProductTableViewCell.h"
 
-#define kSizeCellHeight 60
+#define kSizeCellHeight 75
 #define kLoadMoreThreshold 100
 
 @interface FirstViewController () <UISearchBarDelegate, SearchProductsViewModelDelegate>
@@ -38,7 +38,7 @@
 }
 
 - (void)loadMoreForCurrentProductsViewModel {
-    [[self currentSearchProductsVM] loadMoreProducts];
+    [[self currentSearchProductsVM] loadMoreProductsForOffset:[self currentSearchProductsVM].products.count withLimit:kDefaultLimit];
 }
 
 #pragma mark - UITableViewCell DataSource & Delegate
@@ -54,9 +54,14 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return kSizeCellHeight;
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([self scrollViewReachedThreshold:scrollView]) {
-
+        SearchProductsViewModel *vm = [self currentSearchProductsVM];
+        [vm loadMoreProductsForOffset:vm.products.count withLimit:kDefaultLimit];
     }
 }
 
@@ -76,7 +81,9 @@
     vm.delegate = self;
     [self.tableView setContentOffset:CGPointZero];
     [self.tableView reloadData];
-    [vm loadMoreProducts];
+    if (vm.products.count == 0) {
+        [vm loadMoreProductsForOffset:0 withLimit:kDefaultLimit];
+    }
     [searchBar resignFirstResponder];
 }
 
