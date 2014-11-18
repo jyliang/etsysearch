@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F75971E1A1AE22D00E99D77 /* MainImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75971D1A1AE22D00E99D77 /* MainImage.m */; };
+		4F7597231A1AE2D900E99D77 /* ValidationUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7597221A1AE2D900E99D77 /* ValidationUtility.m */; };
+		4F7597271A1B0C8400E99D77 /* NSString+Addtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7597261A1B0C8400E99D77 /* NSString+Addtions.m */; };
 		4F842EDF1A19CB4C00C90073 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F842EDE1A19CB4C00C90073 /* main.m */; };
 		4F842EE21A19CB4C00C90073 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F842EE11A19CB4C00C90073 /* AppDelegate.m */; };
 		4F842EE51A19CB4D00C90073 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F842EE41A19CB4C00C90073 /* FirstViewController.m */; };
@@ -41,6 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F75971C1A1AE22D00E99D77 /* MainImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainImage.h; sourceTree = "<group>"; };
+		4F75971D1A1AE22D00E99D77 /* MainImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainImage.m; sourceTree = "<group>"; };
+		4F7597211A1AE2D900E99D77 /* ValidationUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationUtility.h; sourceTree = "<group>"; };
+		4F7597221A1AE2D900E99D77 /* ValidationUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidationUtility.m; sourceTree = "<group>"; };
+		4F7597251A1B0C8400E99D77 /* NSString+Addtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Addtions.h"; sourceTree = "<group>"; };
+		4F7597261A1B0C8400E99D77 /* NSString+Addtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Addtions.m"; sourceTree = "<group>"; };
 		4F842ED91A19CB4C00C90073 /* etsysearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = etsysearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F842EDD1A19CB4C00C90073 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F842EDE1A19CB4C00C90073 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -104,6 +113,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F75971F1A1AE23000E99D77 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F75971C1A1AE22D00E99D77 /* MainImage.h */,
+				4F75971D1A1AE22D00E99D77 /* MainImage.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4F7597201A1AE2C900E99D77 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4F7597211A1AE2D900E99D77 /* ValidationUtility.h */,
+				4F7597221A1AE2D900E99D77 /* ValidationUtility.m */,
+				4F7597251A1B0C8400E99D77 /* NSString+Addtions.h */,
+				4F7597261A1B0C8400E99D77 /* NSString+Addtions.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		4F7597241A1B0C6500E99D77 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		4F842ED01A19CB4C00C90073 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +161,8 @@
 		4F842EDB1A19CB4C00C90073 /* etsysearch */ = {
 			isa = PBXGroup;
 			children = (
+				4F7597241A1B0C6500E99D77 /* New Group */,
+				4F7597201A1AE2C900E99D77 /* Utility */,
 				4F842F2D1A19D9FA00C90073 /* Search */,
 				4F842F0B1A19D4CB00C90073 /* libs */,
 				4F842EE01A19CB4C00C90073 /* AppDelegate.h */,
@@ -207,6 +245,7 @@
 		4F842F2D1A19D9FA00C90073 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				4F75971F1A1AE23000E99D77 /* Model */,
 				4F842F2E1A19DA0800C90073 /* SearchManager.h */,
 				4F842F2F1A19DA0800C90073 /* SearchManager.m */,
 				4F842F2A1A19D9D300C90073 /* SearchProductsViewModel.h */,
@@ -319,12 +358,14 @@
 			files = (
 				4F842F261A19D4CB00C90073 /* AFURLConnectionOperation.m in Sources */,
 				4F842F281A19D4CB00C90073 /* UIImageView+AFNetworking.m in Sources */,
+				4F75971E1A1AE22D00E99D77 /* MainImage.m in Sources */,
 				4F842EE81A19CB4D00C90073 /* SecondViewController.m in Sources */,
 				4F842F0A1A19D41300C90073 /* ProductItemViewModel.m in Sources */,
 				4F842F251A19D4CB00C90073 /* AFPropertyListRequestOperation.m in Sources */,
 				4F842EE21A19CB4C00C90073 /* AppDelegate.m in Sources */,
 				4F842EE51A19CB4D00C90073 /* FirstViewController.m in Sources */,
 				4F842F301A19DA0800C90073 /* SearchManager.m in Sources */,
+				4F7597231A1AE2D900E99D77 /* ValidationUtility.m in Sources */,
 				4F842F271A19D4CB00C90073 /* AFXMLRequestOperation.m in Sources */,
 				4F842F241A19D4CB00C90073 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				4F842F211A19D4CB00C90073 /* AFHTTPRequestOperation.m in Sources */,
@@ -334,6 +375,7 @@
 				4F842F201A19D4CB00C90073 /* AFHTTPClient.m in Sources */,
 				4F842F231A19D4CB00C90073 /* AFJSONRequestOperation.m in Sources */,
 				4F842F071A19D13200C90073 /* ProductTableViewCell.m in Sources */,
+				4F7597271A1B0C8400E99D77 /* NSString+Addtions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +568,7 @@
 				4F842F011A19CB4D00C90073 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F842F021A19CB4D00C90073 /* Build configuration list for PBXNativeTarget "etsysearchTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +577,7 @@
 				4F842F041A19CB4D00C90073 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
