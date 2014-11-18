@@ -1,0 +1,13 @@
+//
+//  PrefixHeader.pch
+//  etsysearch
+//
+//  Created by Jason Liang on 11/17/14.
+//  Copyright (c) 2014 Jason Liang. All rights reserved.
+//
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "AFNetworking.h"
+#endif
