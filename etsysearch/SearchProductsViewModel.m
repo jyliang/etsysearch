@@ -32,6 +32,7 @@ static NSString * const kPaginationOffset = @"effective_offset";
     if (self) {
         self.queue = [[NSOperationQueue alloc] init];
         self.products = [NSMutableArray array];
+        self.maxCount = -1;
     }
     return self;
 }
@@ -57,12 +58,18 @@ static NSString * const kPaginationOffset = @"effective_offset";
 
 - (void)loadMoreProductsForOffset:(NSInteger)offset withLimit:(NSInteger)limit {
     [self populateEmptyViewModelForOffset:offset withLimit:limit];
+    [self calibrateMaxCount];
     [self.delegate reloadProductData];
 
     NSString *urlString = [[NSString stringWithFormat:@"%@listings/active?api_key=%@&includes=MainImage&offset=%li&limit=%li&keywords=%@", kURLApiBase, kURLApiKey, offset, limit,self.searchKeyword] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (self.maxCount == -1) {
+            NSInteger count = [responseObject[kCount] integerValue];
+            self.maxCount = count;
+        }
+
         NSDictionary *pagination = responseObject[kPagination];
         NSInteger offset = [pagination[kPaginationOffset] integerValue];
         NSArray *results = responseObject[kResults];
@@ -70,11 +77,21 @@ static NSString * const kPaginationOffset = @"effective_offset";
             [self.products[offset] populateWithJSON:dictionary];
             offset++;
         }
+        [self calibrateMaxCount];
         [self.delegate reloadProductData];
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertview show];
         NSLog(@"Error %@", [error localizedDescription]);
     }];
     [[NSOperationQueue mainQueue] addOperation:operation];
+}
+
+- (void)calibrateMaxCount {
+    if (self.maxCount > -1 && self.products.count > self.maxCount) {
+        [self.products removeObjectsInRange:NSMakeRange(self.maxCount, self.products.count-self.maxCount)];
+    }
 }
 
 - (void)loadMoreProductsToIndex:(NSInteger)index {

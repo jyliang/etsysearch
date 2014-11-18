@@ -16,6 +16,7 @@
 @interface FirstViewController () <UISearchBarDelegate, SearchProductsViewModelDelegate>
 
 @property (nonatomic, strong) SearchManager *searchMgr;
+@property (weak, nonatomic) IBOutlet UILabel *noResultLabel;
 
 @end
 
@@ -26,6 +27,7 @@
 
     self.searchMgr = [[SearchManager alloc] init];
     [self.searchBar becomeFirstResponder];
+    self.noResultLabel.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +63,9 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ([self scrollViewReachedThreshold:scrollView]) {
         SearchProductsViewModel *vm = [self currentSearchProductsVM];
-        [vm loadMoreProductsForOffset:vm.products.count withLimit:kDefaultLimit];
+        if (vm.maxCount == 0 || vm.products.count < vm.maxCount) {
+            [vm loadMoreProductsForOffset:vm.products.count withLimit:kDefaultLimit];
+        }
     }
 }
 
@@ -90,6 +94,12 @@
 #pragma mark - SearchProductsViewModelDelegate
 
 - (void)reloadProductData {
+    if ([self currentSearchProductsVM].maxCount == 0) {
+        self.noResultLabel.hidden = NO;
+        self.noResultLabel.text = [NSString stringWithFormat:@"No result for '%@'", self.searchMgr.currentSearchKey];
+    } else {
+        self.noResultLabel.hidden = YES;
+    }
     [self.tableView reloadData];
 }
 

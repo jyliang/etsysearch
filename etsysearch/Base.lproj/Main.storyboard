@@ -26,7 +26,7 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="Wdh-JT-20t"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3qu-NR-pd4">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3qu-NR-pd4">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -70,20 +70,33 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="KWJ-SX-JYj"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No result for ''" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBB-1y-kip">
+                                <rect key="frame" x="0.0" y="290" width="600" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="5NU-v8-eVl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="sBB-1y-kip" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="2mI-bH-xYF"/>
                             <constraint firstAttribute="trailing" secondItem="Afz-7Q-mFK" secondAttribute="trailing" id="5Nc-Ic-Ud1"/>
                             <constraint firstItem="Afz-7Q-mFK" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="Bgj-3s-eOn"/>
                             <constraint firstAttribute="trailing" secondItem="3qu-NR-pd4" secondAttribute="trailing" id="FZP-lR-C0Y"/>
                             <constraint firstItem="3qu-NR-pd4" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ItH-oX-KNI"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="3qu-NR-pd4" secondAttribute="bottom" id="L5T-Ol-17H"/>
                             <constraint firstItem="3qu-NR-pd4" firstAttribute="top" secondItem="Afz-7Q-mFK" secondAttribute="bottom" id="Q1j-IL-a8j"/>
+                            <constraint firstAttribute="trailing" secondItem="sBB-1y-kip" secondAttribute="trailing" id="jBe-ld-haO"/>
+                            <constraint firstAttribute="centerY" secondItem="sBB-1y-kip" secondAttribute="centerY" id="rSA-6F-8i2"/>
                             <constraint firstItem="Afz-7Q-mFK" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="yPB-4o-HWu"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Etsy" image="first" id="acW-dT-cKf"/>
                     <connections>
+                        <outlet property="noResultLabel" destination="sBB-1y-kip" id="wEf-hU-JiM"/>
                         <outlet property="searchBar" destination="Afz-7Q-mFK" id="igF-IA-CEJ"/>
                         <outlet property="tableView" destination="3qu-NR-pd4" id="efy-Ou-BOC"/>
                     </connections>

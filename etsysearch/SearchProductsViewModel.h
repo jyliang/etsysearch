@@ -21,6 +21,7 @@ static NSInteger const kDefaultLimit = 25;
 @property (nonatomic, weak) id<SearchProductsViewModelDelegate> delegate;
 @property (nonatomic, strong) NSString *searchKeyword;
 @property (nonatomic, strong) NSMutableArray *products;
+@property (nonatomic) NSInteger maxCount;
 
 - (void)loadMoreProductsForOffset:(NSInteger)offset withLimit:(NSInteger)limit;
 - (void)loadMoreProductsToIndex:(NSInteger)index;
