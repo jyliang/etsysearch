@@ -7,22 +7,42 @@
 //
 
 #import "ProductItemViewModel.h"
+#import "MainImage.h"
+
+static NSString * const kTitle = @"title";
+static NSString * const kMainImage = @"MainImage";
+
 
 @interface ProductItemViewModel ()
 
 @property (nonatomic, strong) NSString *productTitle;
-@property (nonatomic, strong) NSString *productImageURL;
+@property (nonatomic, strong) MainImage *mainImage;
 
 @end
 
 @implementation ProductItemViewModel
+
++ (ProductItemViewModel *)getEmptyItemViewModel {
+    ProductItemViewModel *vm = [[ProductItemViewModel alloc] init];
+    vm.populated = NO;
+    return vm;
+
+}
+
+- (void)populateWithJSON:(NSDictionary *)json {
+    self.populated = YES;
+    self.productTitle = json[kTitle];
+    if ([ValidationUtility isValidDictionary:json[kMainImage]]) {
+        self.mainImage = [[MainImage alloc] initWithJSON:json[kMainImage]];
+    }
+}
 
 - (NSString *)getProductTitle {
     return self.productTitle;
 }
 
 - (NSString *)getProductImageURL {
-    return self.productImageURL;
+    return self.mainImage.url_75x75;
 }
 
 @end

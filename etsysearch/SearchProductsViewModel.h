@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSInteger const kDefaultLimit = 25;
+
 @protocol SearchProductsViewModelDelegate <NSObject>
 
 - (void)reloadProductData;
@@ -20,7 +22,7 @@
 @property (nonatomic, strong) NSString *searchKeyword;
 @property (nonatomic, strong) NSMutableArray *products;
 
-- (void)loadMoreProducts;
+- (void)loadMoreProductsForOffset:(NSInteger)offset withLimit:(NSInteger)limit;
 - (void)loadMoreProductsToIndex:(NSInteger)index;
 
 @end

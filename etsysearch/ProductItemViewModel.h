@@ -10,7 +10,10 @@
 
 @interface ProductItemViewModel : NSObject
 
+@property (nonatomic) BOOL populated;
 
++ (ProductItemViewModel *)getEmptyItemViewModel;
+- (void)populateWithJSON:(NSDictionary *)json;
 
 - (NSString *)getProductTitle;
 - (NSString *)getProductImageURL;
